@@ -1,10 +1,11 @@
 import Modal from "./components/Modal";
 import Navigation from "./components/Navigation";
-import ModalContext from "./context/Context";
 import { useContext } from "react";
+import ModalContext from "./context/Context";
 
 function App() {
-  const ctx = useContext(ModalContext);
+  const test = useContext(ModalContext);
+  console.log(test);
   return (
     <>
       <div className="container mx-auto mt-5">
