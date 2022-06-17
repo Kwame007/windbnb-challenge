@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 import Input from "./Input";
 import Logo from "./Logo";
-import { FaSearch } from "react-icons/fa";
+import { IoIosSearch } from "react-icons/io";
 
 const Navigation = () => {
   return (
@@ -32,7 +32,7 @@ const Navigation = () => {
               className="
               flex justify-center items-center  w-full h-full rounded-r-2xl"
             >
-              <FaSearch className=" text-red-500" />
+              <IoIosSearch className=" text-red-500" />
             </Button>
           </div>
         </aside>
