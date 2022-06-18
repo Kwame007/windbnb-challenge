@@ -20,7 +20,7 @@ const GuestPicker = (props) => {
 const GuestSelector = () => {
   return (
     <>
-      <div>
+      <div className="md:col-start-2">
         <GuestPicker title="Adult" desc="Age 13 or above" />
         <GuestPicker title="Children" desc="Age 2 - 12" />
       </div>
