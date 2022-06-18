@@ -1,30 +1,60 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "./Button";
-import Input from "./Input";
 import Logo from "./Logo";
 import { IoIosSearch } from "react-icons/io";
+import ModalContext from "../context/Context";
 
 const Navigation = () => {
+  const {
+    showModal,
+    showGuestSelector,
+    showLocationSelector,
+    hideGuestSelector,
+    hideLocationSelector,
+  } = useContext(ModalContext);
+
+  // show modal on location btn click
+  const locationSelectorBtn = () => {
+    showModal();
+    showLocationSelector();
+
+    // hide guest selector if location selector is shown
+    hideGuestSelector();
+  };
+
+  // show modal on guest btn click
+  const guestSelectorBtn = () => {
+    showModal();
+    showGuestSelector();
+
+    // hide location selector if guest selector is shown
+    hideLocationSelector();
+  };
+
   return (
     <React.Fragment>
       <nav className="md:grid md:grid-cols-2 md:justify-center md:items-center md:h-full">
         <Logo />
         <aside
-          className="grid grid-cols-4 mx-6 mt-9 bg-white-400 rounded-2xl h-auto md:mt-0 md:ml-auto md:w-auto md:h-full "
+          className="grid grid-cols-4 mx-6 mt-9 bg-white-400 rounded-2xl h-auto md:mt-0 md:ml-auto md:w-1/2 md:h-full "
           style={{ boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.1)" }}
         >
           <div className="col-span-3 flex">
-            <div className="w-30">
-              <Input
-                className="border-0 py-4 px-2 w-full rounded-2xl placeholder:text-gray-500 placeholder:text-sm focus:outline-none"
-                placeholder="Helsinki,Finland"
-              />
+            <div className="w-full">
+              <Button
+                className="border-r py-4 px-2 w-full text-gray-400 text-sm rounded-l-2x md:border-r md:w-full"
+                onClick={locationSelectorBtn}
+              >
+                Helsinki,Finland
+              </Button>
             </div>
-            <div className="">
-              <Input
-                className="border-0 border-x py-4 px-2 w-full placeholder:text-slate-300 placeholder:text-sm focus:outline-none"
-                placeholder="Add guests"
-              />
+            <div className="w-full">
+              <Button
+                className="border-r py-4 px-2 w-full text-gray-400 text-sm md:border-r md:w-full"
+                onClick={guestSelectorBtn}
+              >
+                Add guests
+              </Button>
             </div>
           </div>
           <div className="  ">
