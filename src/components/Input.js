@@ -7,6 +7,7 @@ const Input = (props) => {
       className={props.className}
       placeholder={props.placeholder}
       onChange={props.onChange}
+      onFocus={props.onFocus}
     />
   );
 };
