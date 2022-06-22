@@ -4,17 +4,22 @@ const ModalContext = createContext({
   isShowing: false,
   locationSelector: false,
   guestSelector: false,
+  adults: 1,
+  children: 2,
   showLocationSelector: () => {},
   hideLocationSelector: () => {},
   showGuestSelector: () => {},
   hideGuestSelector: () => {},
   showModal: () => {},
   hideModal: () => {},
+  increaseAdults: () => {},
+  decreaseAdults: () => {},
+  increaseChildren: () => {},
+  decreaseChildren: () => {},
 });
 
 // reducer function
 const reducer = (state, action) => {
-  console.log(state);
   switch (action.type) {
     case "SHOW_MODAL":
       return { ...state, isShowing: true };
@@ -28,6 +33,18 @@ const reducer = (state, action) => {
       return { ...state, locationSelector: false };
     case "HIDE_GUEST_SELECTOR":
       return { ...state, guestSelector: false };
+    case "ADULT_INCREMENT":
+      console.log(state.adults);
+      return { ...state, adults: state.adults + 1 };
+    case "ADULT_DECREMENT":
+      console.log(state.adults);
+      return { ...state, adults: state.adults - 1 };
+    case "CHILD_INCREMENT":
+      console.log(state.children);
+      return { ...state, children: state.children + 1 };
+    case "CHILD_DECREMENT":
+      console.log(state.children);
+      return { ...state, children: state.children - 1 };
     default:
       return state;
   }
@@ -39,6 +56,8 @@ export const ModalProvider = (props) => {
     isShowing: false,
     locationSelector: false,
     guestSelector: false,
+    adults: 0,
+    children: 0,
   });
 
   // handleShowModal
@@ -69,18 +88,44 @@ export const ModalProvider = (props) => {
     dispatch({ type: "HIDE_GUEST_SELECTOR" });
   };
 
+  // handleIncreaseAdults
+  const handleAdultIncrement = () => {
+    dispatch({ type: "ADULT_INCREMENT" });
+  };
+
+  // handleDecreaseAdults
+  const handleAdultDecrement = () => {
+    dispatch({ type: "ADULT_DECREMENT" });
+  };
+
+  // handleIncreaseChildren
+  const handleChildIncrement = () => {
+    dispatch({ type: "CHILD_INCREMENT" });
+  };
+
+  // handleDecreaseChildren
+  const handleChildDecrement = () => {
+    dispatch({ type: "CHILD_DECREMENT" });
+  };
+
   return (
     <ModalContext.Provider
       value={{
         isShowing: state.isShowing,
         locationSelector: state.locationSelector,
         guestSelector: state.guestSelector,
+        adults: state.adults,
+        children: state.children,
         showModal: handleShowModal,
         hideModal: handleHideModal,
         showLocationSelector: handleShowLocationSelector,
         showGuestSelector: handleShowGuestSelector,
         hideLocationSelector: handleHideLocationSelector,
         hideGuestSelector: handleHideGuestSelector,
+        increaseAdults: handleAdultIncrement,
+        decreaseAdults: handleAdultDecrement,
+        increaseChildren: handleChildIncrement,
+        decreaseChildren: handleChildDecrement,
       }}
     >
       {props.children}
