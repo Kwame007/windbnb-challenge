@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ModalContext from "../context/Context";
 import { IoIosSearch, IoMdClose } from "react-icons/io";
 import Button from "./Button";
@@ -24,6 +24,8 @@ const BackDrop = (props) => {
 };
 
 const Modal = () => {
+  // location state
+  const [query, setQuery] = useState("Helsinki, Finland");
   // reducer
   const {
     hideModal,
@@ -51,6 +53,11 @@ const Modal = () => {
     hideLocationSelector();
   };
 
+  // get selected location from location list on click
+  const getLocationQuery = (location) => {
+    setQuery((prevState) => location);
+    console.log(query);
+  };
   return (
     <>
       <div className="p-3 bg-white fixed inset-0 max-h-fit z-50">
@@ -73,6 +80,8 @@ const Modal = () => {
                 className="border-0 py-4 px-2 w-full rounded-t-2xl placeholder:text-gray-500 placeholder:text-sm focus:outline-none"
                 placeholder="Helsinki,Finland"
                 onFocus={locationInputFocus}
+                onChange={getLocationQuery}
+                value={query}
               />
             </div>
             <div className=" md:border-r">
@@ -80,7 +89,7 @@ const Modal = () => {
                 Guests
               </p>
               <Input
-                className="border-0 py-4 px-2 w-full rounded-b-2xl   placeholder:text-gray-500 placeholder:text-sm focus:outline-none"
+                className="border-0 py-4 px-2 w-full rounded-b-2xl   placeholder:text-gray-500 placeholder:text-sm focus:outline-none "
                 placeholder="Add guest"
                 onFocus={guestInputFocus}
               />
@@ -91,7 +100,9 @@ const Modal = () => {
           </div>
         </aside>
         <div className="grid grid-cols-1 mt-5 md:grid-cols-3 md:mx-auto md:mt-10 md:w-9/12">
-          {locationSelector && <LocationList locations={locations} />}
+          {locationSelector && (
+            <LocationList locations={locations} getQuery={getLocationQuery} />
+          )}
           {guestSelector && <GuestSelector />}
         </div>
 
