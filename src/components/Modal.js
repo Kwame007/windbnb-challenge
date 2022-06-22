@@ -26,8 +26,12 @@ const BackDrop = (props) => {
 const Modal = () => {
   // location state
   const [query, setQuery] = useState("Helsinki, Finland");
+
   // reducer
   const {
+    stays,
+    totalGuests,
+    filterStays,
     hideModal,
     locationSelector,
     guestSelector,
@@ -55,9 +59,15 @@ const Modal = () => {
 
   // get selected location from location list on click
   const getLocationQuery = (location) => {
-    setQuery((prevState) => location);
+    setQuery(location);
     console.log(query);
   };
+
+  // get number of guests from guest selector on click
+  const getGuestQuery = () => {
+    return totalGuests;
+  };
+
   return (
     <>
       <div className="p-3 bg-white fixed inset-0 max-h-fit z-50">
@@ -92,9 +102,14 @@ const Modal = () => {
                 className="border-0 py-4 px-2 w-full rounded-b-2xl   placeholder:text-gray-500 placeholder:text-sm focus:outline-none "
                 placeholder="Add guest"
                 onFocus={guestInputFocus}
+                onChange={getGuestQuery}
+                value={totalGuests}
               />
             </div>
-            <Button className=" hidden w-32 h-12  justify-center items-center bg-red-400 text-white text-sm rounded-2xl mx-auto md:my-auto md:flex ">
+            <Button
+              className=" hidden w-32 h-12  justify-center items-center bg-red-400 text-white text-sm rounded-2xl mx-auto md:my-auto md:flex  md:hover:bg-red-500"
+              onClick={() => filterStays(stays, query, totalGuests)}
+            >
               <IoIosSearch className="mr-2 text-sm" /> Search
             </Button>
           </div>
@@ -106,7 +121,7 @@ const Modal = () => {
           {guestSelector && <GuestSelector />}
         </div>
 
-        <Button className=" w-32 h-12 flex justify-center items-center bg-red-400 text-white text-sm rounded-2xl mx-auto mt-10 md:hidden">
+        <Button className=" w-32 h-12 flex justify-center items-center bg-red-400 text-white text-sm rounded-2xl mx-auto mt-10 md:hidden ">
           <IoIosSearch className="mr-2 text-sm" /> Search
         </Button>
       </div>
