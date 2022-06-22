@@ -13,6 +13,8 @@ function App() {
       <div className="container mx-auto mt-5">
         <Navigation />
         <Listings />
+
+        {/* create portal to modal */}
         {isShowing &&
           createPortal(<Modal />, document.getElementById("modal-root"))}
       </div>
