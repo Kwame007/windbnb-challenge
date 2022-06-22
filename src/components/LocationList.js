@@ -1,13 +1,20 @@
 import React from "react";
 import { IoMdPin } from "react-icons/io";
 
-const LocationList = (props) => {
+const LocationList = ({ locations, getQuery }) => {
+  // get selected location from location list on click
+  const getLocQuery = (event) => {
+    getQuery(event.target.innerText);
+  };
   return (
     <ul className="ml-10">
-      {props?.locations?.map((list, index) => (
-        <div className="flex" key={index}>
+      {locations?.map((list, index) => (
+        <div className="flex hover:underline" key={index}>
           <IoMdPin className="mr-1 inline" />
-          <li className="mb-4 text tracking-wider text-sm text-gray-400 md:hover:cursor-pointer">
+          <li
+            className=" font-muly mb-4 text tracking-wider text-sm text-gray-400 md:hover:cursor-pointer"
+            onClick={getLocQuery}
+          >
             {list}
           </li>
         </div>
