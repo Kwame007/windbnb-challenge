@@ -4,7 +4,7 @@ import SuperHost from "./SuperHost";
 
 const Listing = ({ photo, title, superHost, type, rating }) => {
   return (
-    <div className="grid grid-cols-1 justify-center md:mt-10 md:cursor-pointer " >
+    <div className="grid grid-cols-1 justify-center md:mt-10 md:cursor-pointer ">
       <img
         src={photo}
         alt=""
