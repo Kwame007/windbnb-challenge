@@ -36,7 +36,7 @@ const Navigation = () => {
       <nav className="md:grid md:grid-cols-2 md:justify-center md:items-center md:h-full">
         <Logo />
         <aside
-          className="grid grid-cols-4 mx-6 mt-9 bg-white-400 rounded-2xl h-auto md:mt-0 md:ml-auto md:w-1/2 md:h-full "
+          className="grid grid-cols-4 mx-6 mt-9 bg-white-400 rounded-2xl h-auto drop-shadow-default md:mt-0 md:ml-auto md:w-1/2 md:h-full "
           style={{ boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.1)" }}
         >
           <div className="col-span-3 flex">
@@ -50,7 +50,7 @@ const Navigation = () => {
             </div>
             <div className="w-full">
               <Button
-                className="border-r py-4 px-2 w-full text-gray-400 text-sm md:border-r md:w-full"
+                className="border-r py-4 px-2 w-full text-gray-400 text-sm md:border-r md:w-full "
                 onClick={guestSelectorBtn}
               >
                 Add guests
