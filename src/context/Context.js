@@ -86,7 +86,7 @@ export const ModalProvider = (props) => {
     // get data from json server
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3006/stays");
+        const response = await fetch("http://localhost:8000/stays");
 
         // check if res ok
         if (!response.ok) {
